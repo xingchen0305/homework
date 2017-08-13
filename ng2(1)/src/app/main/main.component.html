@@ -1,0 +1,49 @@
+<span>{{msg}}</span>
+<div class="row">
+  <span >欢迎您，{{data.name}}</span>
+  <button class="btn" (click)="show()">详细信息</button>
+<!--  <button class="btn"(click)="addPerson()" >新增人员</button>-->
+ </div>
+<div *ngIf="style">登录名：{{data.loginName}},创建时间：{{data.createTime}},上次修改时间：{{data.lastUpdate}}</div>
+<hr>
+
+<div class="form-group">
+   <label >房间</label>
+    <select style="width:150px;" class="btn btn-info btn-sm" (change)="onChange($event.target.value)" >
+    <option value="" style="display: none">请选择国家</option>
+    <option *ngFor="let item of roomList" [value]="item.id"  >{{item.name}}</option>
+  </select>
+  <button class="btn" (click)="showRoom()" >新增房间</button>
+  </div>
+<hr>
+<div >
+  <ul >
+     <li *ngFor="let item of lightList">
+      <a>
+        状态：{{item.state}}，创建时间：{{item.createTime}},上次改动时间：{{item.lastUpdate}}
+      </a>
+    </li>
+  </ul>
+  <button class="btn" (click)="showLight()">新增灯</button>
+
+</div>
+
+<div *ngIf="showR">
+  <hr>
+  <span>房间名称</span>
+  <input type="text" class="input" [(ngModel)]="name">
+  <span>所属人员（登录名）</span>
+  <input type="text" class="input" [(ngModel)]="person">
+  <button class="btn" (click)="submitRoom()">提交</button>
+  <button class="btn" (click)="cancelRoom()">取消</button>
+</div>
+
+<div *ngIf="showL">
+  <hr>
+  <span>增加数量</span>
+  <input type="text" class="input" [(ngModel)]="num">
+  <span>{{wrong}}</span>
+   <button class="btn" (click)="submitLight()">提交</button>
+  <button class="btn" (click)="cancelLight()">取消</button>
+</div>
+<hr>
